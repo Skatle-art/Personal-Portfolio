@@ -1,0 +1,18 @@
+<section class="content-section section-shell section-muted" id="projects" aria-labelledby="section-title-04">
+    <SectionHeading Number="04" Title="SELECTED PROJECTS" />
+    <div class="projects-grid">
+        @foreach (var project in Projects)
+        {
+            <ProjectCard Project="project" />
+        }
+    </div>
+</section>
+
+@code {
+    private static readonly ProjectCard.ProjectDetails[] Projects =
+    [
+        new("01", "Expense Tracker Application", "An Android expense-tracking application that allows users to create, view, update and delete expense records.", ["CRUD operations", "Input validation", "Expense summary dashboard", "Snackbar notifications", "Undo delete", "Local Room database", "MVVM architecture", "State management"], ["Kotlin", "Jetpack Compose", "Room Database", "MVVM"], "https://github.com/Skatle-art/ExpenseApp"),
+        new("02", "Dental Appointment System", "A database-backed desktop and web solution developed to support dental appointment management and business reporting.", ["Appointment management", "Database integration", "Desktop and web interfaces", "Crystal Reports", "Power BI reporting", "Data visualisation"], ["C#", "ASP.NET Web Forms", "Windows Forms", "SQL", "Power BI"], Label: "PRIVATE ACADEMIC PROJECT"),
+        new("03", "CampusCart E-commerce Project", "A university e-commerce project focused on online product management and structured retail operations.", ["Product management", "SKU management", "Batch product workflows", "WooCommerce store configuration", "Docker-supported development environment"], ["WordPress", "WooCommerce", "Docker"], Label: "ACADEMIC PROJECT"),
+    ];
+}

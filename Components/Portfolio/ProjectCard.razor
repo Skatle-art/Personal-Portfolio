@@ -1,0 +1,40 @@
+<article class="project-card">
+    <div class="project-card-top">
+        <span class="project-number">@Project.Number</span>
+        @if (!string.IsNullOrWhiteSpace(Project.Label))
+        {
+            <span class="project-label">@Project.Label</span>
+        }
+    </div>
+    <h3>@Project.Name</h3>
+    <p>@Project.Description</p>
+    @if (Project.Features.Length > 0)
+    {
+        <h4>Selected features</h4>
+        <ul class="project-features">
+            @foreach (var feature in Project.Features)
+            {
+                <li>@feature</li>
+            }
+        </ul>
+    }
+    @if (Project.Technologies.Length > 0)
+    {
+        <ul class="tag-list project-tags" aria-label="Technologies">
+            @foreach (var technology in Project.Technologies)
+            {
+                <li>@technology</li>
+            }
+        </ul>
+    }
+    @if (!string.IsNullOrWhiteSpace(Project.RepositoryUrl))
+    {
+        <a class="project-link" href="@Project.RepositoryUrl" target="_blank" rel="noopener noreferrer">VIEW ON GITHUB <span aria-hidden="true">↗</span></a>
+    }
+</article>
+
+@code {
+    [Parameter, EditorRequired] public ProjectDetails Project { get; set; } = default!;
+
+    public sealed record ProjectDetails(string Number, string Name, string Description, string[] Features, string[] Technologies, string? RepositoryUrl = null, string? Label = null);
+}

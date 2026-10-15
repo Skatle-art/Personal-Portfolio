@@ -1,0 +1,32 @@
+<section class="content-section section-shell section-muted" id="skills" aria-labelledby="skills-title">
+    <SectionHeading Number="02" Title="TECHNICAL SKILLS" />
+    <div class="skills-grid">
+        @foreach (var category in Categories)
+        {
+            <article class="skill-card">
+                <h3>@category.Name</h3>
+                <ul class="tag-list">
+                    @foreach (var skill in category.Items)
+                    {
+                        <li>@skill</li>
+                    }
+                </ul>
+            </article>
+        }
+    </div>
+</section>
+
+@code {
+    private static readonly SkillCategory[] Categories =
+    [
+        new("Programming Languages", ["C#","Kotlin", "SQL", "HTML5", "CSS3"]),
+        new("Frameworks and Development", ["ASP.NET Core MVC", ".NET", "Entity Framework Core", "Jetpack Compose","MVVM", "ADO.NET", "Blazor", "Windows Forms", "ASP.NET Web Forms"]),
+        new("Databases", ["SQL Server", "Relational database design", "Data modelling","Room Database"]),
+        new("Systems Analysis", ["Information gathering and elicitation","Requirements definition","Requirements prioritisation","User-interface requirements","Requirements validation and stakeholder feedback"]),
+        new("System Design", ["Technology environment design","Application component design","Platform-independent models (PIMs)","Platform-specific models (PSMs)","User-interface design","Database design","Software class and method design"]),
+        new("Data and Business Intelligence", ["Power BI", "Dashboard design", "KPI reporting", "Data visualisation"]),
+        new("Tools and Infrastructure", ["Git", "GitHub", "Visual Studio", "Android Studio", "SQL Server Management Studio", "Draw.io", "Docker", "XAMPP", "Bootstrap", "WordPress", "WooCommerce"])
+    ];
+
+    private sealed record SkillCategory(string Name, string[] Items);
+}

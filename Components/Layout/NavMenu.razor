@@ -1,0 +1,39 @@
+﻿<header class="site-header">
+    <div class="nav-inner">
+        <a class="brand" href="#home" @onclick="CloseMenu" aria-label="Katleho Molefe, home">
+            <span class="brand-mark" aria-hidden="true">KM</span>
+            <span class="brand-name">KATLEHO MOLEFE</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-label="@(menuOpen ? "Close navigation menu" : "Open navigation menu")"
+                aria-expanded="@menuOpen" aria-controls="primary-navigation" @onclick="ToggleMenu">
+            <span aria-hidden="true">@(menuOpen ? "×" : "☰")</span>
+        </button>
+        <nav id="primary-navigation" class="primary-navigation @(menuOpen ? "is-open" : string.Empty)"
+             aria-label="Primary navigation" @onkeydown="HandleKeyDown">
+            <a href="#home" @onclick="CloseMenu">Home</a>
+            <a href="#about" @onclick="CloseMenu">About</a>
+            <a href="#skills" @onclick="CloseMenu">Skills</a>
+            <a href="#experience" @onclick="CloseMenu">Experience</a>
+            <a href="#projects" @onclick="CloseMenu">Projects</a>
+            <a href="#education" @onclick="CloseMenu">Education</a>
+            <a href="#contact" @onclick="CloseMenu">Contact</a>
+            <a class="button button-primary nav-cv" href="/files/Katleho%20Molefe%20CV.docx" target="_blank" rel="noopener noreferrer" @onclick="CloseMenu">DOWNLOAD CV</a>
+        </nav>
+    </div>
+</header>
+
+@code {
+    private bool menuOpen;
+
+    private void ToggleMenu() => menuOpen = !menuOpen;
+    private void CloseMenu() => menuOpen = false;
+
+    private void HandleKeyDown(KeyboardEventArgs args)
+    {
+        if (args.Key == "Escape")
+        {
+            CloseMenu();
+        }
+    }
+}
+

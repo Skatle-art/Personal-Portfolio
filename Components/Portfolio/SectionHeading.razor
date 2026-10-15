@@ -1,0 +1,12 @@
+<div class="section-heading">
+    <span class="section-number" aria-hidden="true">@Number</span>
+    <div>
+        <p class="eyebrow">PORTFOLIO / @Number</p>
+        <h2 id="section-title-@Number">@Title</h2>
+    </div>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public string Number { get; set; } = string.Empty;
+    [Parameter, EditorRequired] public string Title { get; set; } = string.Empty;
+}

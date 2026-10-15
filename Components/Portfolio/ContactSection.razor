@@ -1,0 +1,57 @@
+@using Personal_Portfolio.Components.Portfolio
+
+<section class="content-section section-shell section-muted" id="contact" aria-labelledby="section-title-06">
+    <SectionHeading Number="06" Title="LET’S CONNECT" />
+    <div class="contact-grid">
+        <div class="contact-intro">
+            <h3>Have a challenge worth solving?</h3>
+            <p>Reach out about graduate opportunities, technology projects or collaboration.</p>
+            <dl class="contact-details">
+                <div><dt>Email</dt><dd><a href="mailto:katlehomolefe410@gmail.com">katlehomolefe410@gmail.com</a></dd></div>
+                <div><dt>Phone</dt><dd><a href="tel:+27789273443">078 927 3443</a></dd></div>
+                <div><dt>Location</dt><dd>Durban, KwaZulu-Natal, South Africa</dd></div>
+            </dl>
+        </div>
+        <div class="contact-form-wrap">
+            <p class="form-notice">This form validates your details, but no email service is connected yet. To reach Katleho, please use the email link shown here.</p>
+            <EditForm Model="model" OnValidSubmit="HandleValidSubmit" class="contact-form">
+                <DataAnnotationsValidator />
+                <div class="form-field">
+                    <label for="contact-name">Full name</label>
+                    <InputText id="contact-name" @bind-Value="model.FullName" autocomplete="name" />
+                    <ValidationMessage For="() => model.FullName" />
+                </div>
+                <div class="form-field">
+                    <label for="contact-email">Email address</label>
+                    <InputText id="contact-email" type="email" @bind-Value="model.EmailAddress" autocomplete="email" />
+                    <ValidationMessage For="() => model.EmailAddress" />
+                </div>
+                <div class="form-field">
+                    <label for="contact-subject">Subject</label>
+                    <InputText id="contact-subject" @bind-Value="model.Subject" />
+                    <ValidationMessage For="() => model.Subject" />
+                </div>
+                <div class="form-field">
+                    <label for="contact-message">Message</label>
+                    <InputTextArea id="contact-message" @bind-Value="model.Message" rows="5" />
+                    <ValidationMessage For="() => model.Message" />
+                </div>
+                <button class="button button-primary" type="submit">SEND MESSAGE</button>
+                @if (submitted)
+                {
+                    <p class="form-status" role="status" aria-live="polite">Thank you, @model.FullName. Your details passed validation, but this form cannot send messages yet. Please email <a href="mailto:katlehomolefe410@gmail.com">Katleho directly</a>.</p>
+                }
+            </EditForm>
+        </div>
+    </div>
+</section>
+
+@code {
+    private ContactFormModel model = new();
+    private bool submitted;
+
+    private void HandleValidSubmit()
+    {
+        submitted = true;
+    }
+}
